@@ -11,7 +11,8 @@ export default class Http {
     this.instance = axios.create({
       baseURL: this.baseUrl,
       timeout: 1000,
-      headers: { "X-Custom-Header": "foobar" },
+      // headers: { "X-Custom-Header": "foobar" },
+      headers: { "Content-Type": "application/json" },
     });
   }
 
