@@ -1,5 +1,9 @@
 {
   "endpoints": {
-    "base": "https://somedomain.com"
+    "base": "https://somedomain.com",
+    "3rdParty": "https://3rdparty.com"
+  },
+  "paths": {
+    "cart": "/cart"
   }
 }
