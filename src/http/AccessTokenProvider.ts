@@ -1,5 +1,5 @@
 export default class AccessTokenProvider {
-  tokenType = "Bearer";
+  tokenType = "";
 
   constructor(tokenType: string) {
     this.tokenType = tokenType;

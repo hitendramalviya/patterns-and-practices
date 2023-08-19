@@ -1,14 +1,10 @@
 import Http from "../http/Http";
-import CartService from "./CartService";
-import ValidateCartService from "./ValidateCartService";
+import ResourceService from "./ResourceService";
 
 export default class Client {
-  cartService: CartService;
-
-  validateCartService: ValidateCartService;
+  resourceService: ResourceService;
 
   constructor(http: Http) {
-    this.cartService = new CartService(http);
-    this.validateCartService = new ValidateCartService(http);
+    this.resourceService = new ResourceService(http);
   }
 }
