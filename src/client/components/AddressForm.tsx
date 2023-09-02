@@ -1,10 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
+import Form from "react-bootstrap/Form";
 import HttpFactory from "../../http/HttpFactory";
 import Client from "../../services/Client";
 import ClientAccessTokenProvider from "../ClientAccessTokenProvider";
+import FieldSelector from "./FieldSelector";
 
 export default function AddressForm() {
-  const [addressSchema, setAddressSchema] = useState(null);
+  const [addressSchema, setAddressSchema] = useState<Record<
+    string,
+    any
+  > | null>(null);
+  const [formState, setFormState] = useState({});
   const client = useMemo(
     () =>
       new Client(
@@ -30,52 +36,27 @@ export default function AddressForm() {
   return (
     <div style={{ textAlign: "left" }}>
       <pre>{JSON.stringify(addressSchema, null, 2)}</pre>
+      <Form>
+        {Object.keys(addressSchema.properties).map((key) => (
+          <FieldSelector
+            key={key}
+            name={key}
+            type={addressSchema.properties[key].type}
+            label={addressSchema.properties[key].label}
+            formState={formState}
+          />
+        ))}
+      </Form>
     </div>
   );
 }
 
-/**
- * {
-  "$id": "https://example.com/address.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "An address similar to http://microformats.org/wiki/h-card",
-  "type": "object",
-  "properties": {
-    "post-office-box": {
-      "type": "string"
-    },
-    "extended-address": {
-      "type": "string"
-    },
-    "street-address": {
-      "type": "string"
-    },
-    "locality": {
-      "type": "string"
-    },
-    "region": {
-      "type": "string"
-    },
-    "postal-code": {
-      "type": "string"
-    },
-    "country-name": {
-      "type": "string"
-    }
-  },
-  "required": [
-    "locality",
-    "region",
-    "country-name"
-  ],
-  "dependentRequired": {
-    "post-office-box": [
-      "street-address"
-    ],
-    "extended-address": [
-      "street-address"
-    ]
-  }
-}
- * ['post-office-box', 'extended-address', 'street-address', 'locality', 'region', 'postal-code', 'country-name']
- */
+// const arr = [{ name: "A", age: 20 }]; // ['A'] or [{ name: 'A' }] or [{ employeeName: 'A' }];
+// arr.map((item) => item.name); // ['A']
+// arr.map((item) => ({ name: item.name })); // [{ name: 'A' }]
+// // Arrow function
+// arr.map((item) => {
+//   return { name: item.name };
+// });
+
+// arr.map((item) => ({ employeeName: item.name })); // [{ employeeName: 'A' }]

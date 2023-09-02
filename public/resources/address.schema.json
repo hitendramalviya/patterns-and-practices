@@ -5,24 +5,30 @@
   "type": "object",
   "properties": {
     "post-office-box": {
-      "type": "string"
+      "type": "string",
+      "label": "Post office box"
     },
     "extended-address": {
-      "type": "string"
+      "type": "string",
+      "label": "Address"
     },
     "street-address": {
-      "type": "string"
+      "type": "string",
+      "label": "Street"
     },
     "locality": {
-      "type": "string"
+      "type": "string",
+      "label": "Locality"
     },
     "region": {
-      "type": "string"
+      "type": "string",
+      "label": "Region"
     },
     "postal-code": {
-      "type": "string"
+      "type": "string",
+      "label": "Postal code"
     },
-    "country-name": {
+    "country": {
       "type": "string"
     }
   },
