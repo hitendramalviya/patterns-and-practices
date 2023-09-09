@@ -4,22 +4,24 @@ import HttpFactory from "../../http/HttpFactory";
 import Client from "../../services/Client";
 import ClientAccessTokenProvider from "../ClientAccessTokenProvider";
 import FieldSelector from "./FieldSelector";
+import { useAppContext } from "../context/AppContext";
 
 export default function AddressForm() {
   const [addressSchema, setAddressSchema] = useState<Record<
     string,
     any
   > | null>(null);
-  const [formState, setFormState] = useState({});
+  const { appConfig } = useAppContext();
+
   const client = useMemo(
     () =>
       new Client(
         HttpFactory.create(
-          "http://localhost:5173",
+          appConfig.endpoints.base,
           new ClientAccessTokenProvider("")
         )
       ),
-    []
+    [appConfig.endpoints.base]
   );
 
   useEffect(() => {
@@ -43,20 +45,9 @@ export default function AddressForm() {
             name={key}
             type={addressSchema.properties[key].type}
             label={addressSchema.properties[key].label}
-            formState={formState}
           />
         ))}
       </Form>
     </div>
   );
 }
-
-// const arr = [{ name: "A", age: 20 }]; // ['A'] or [{ name: 'A' }] or [{ employeeName: 'A' }];
-// arr.map((item) => item.name); // ['A']
-// arr.map((item) => ({ name: item.name })); // [{ name: 'A' }]
-// // Arrow function
-// arr.map((item) => {
-//   return { name: item.name };
-// });
-
-// arr.map((item) => ({ employeeName: item.name })); // [{ employeeName: 'A' }]

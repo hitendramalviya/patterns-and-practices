@@ -1,6 +1,6 @@
 {
   "endpoints": {
-    "base": "https://somedomain.com",
+    "base": "http://localhost:5173",
     "3rdParty": "https://3rdparty.com"
   },
   "paths": {

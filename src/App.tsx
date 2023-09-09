@@ -3,12 +3,13 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import AddressForm from "./client/components/AddressForm";
+import AppContextProvider from "./client/context/AppContextProvider";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <AppContextProvider>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -30,7 +31,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <AddressForm />
-    </>
+    </AppContextProvider>
   );
 }
 
