@@ -1,14 +1,36 @@
+import { forwardRef } from "react";
+import { FormControlProps } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-// import { FieldProps } from "./FieldProps";
+import { FieldProps } from "./FieldProps";
+import Select from "./SelectField";
 
-export default function TextField({ value, ...rest }) {
-  return (
-    <Form.Control type="text" value={value || ""} placeholder="" {...rest} />
-  );
-}
+const TextField = forwardRef<HTMLInputElement, FormControlProps & FieldProps>(
+  function TextField(props, ref) {
+    const { value, fieldMetaData, ...rest } = props;
+    const { enum: selectValues } = fieldMetaData;
 
-// Project needs and restrictions
-// Timeline
-// Learning curve
+    if (selectValues && selectValues.length) {
+      return (
+        <Select
+          ref={ref}
+          type="text"
+          value={value || ""}
+          placeholder=""
+          {...rest}
+        />
+      );
+    }
 
-// !Performance
+    return (
+      <Form.Control
+        ref={ref}
+        type="text"
+        value={value || ""}
+        placeholder=""
+        {...rest}
+      />
+    );
+  }
+);
+
+export default TextField;

@@ -3,4 +3,6 @@ export interface FieldProps {
   label?: string;
   defaultValue?: string;
   onChange?: (name: string, value: string) => void;
+  required?: boolean;
+  fieldMetaData?: any;
 }

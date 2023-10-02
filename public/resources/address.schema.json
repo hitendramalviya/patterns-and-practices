@@ -4,15 +4,11 @@
   "description": "An address similar to http://microformats.org/wiki/h-card",
   "type": "object",
   "properties": {
-    "post-office-box": {
+    "postalCode": {
       "type": "string",
-      "label": "Post office box"
+      "label": "Postal code"
     },
-    "extended-address": {
-      "type": "string",
-      "label": "Address"
-    },
-    "street-address": {
+    "streetAddress": {
       "type": "string",
       "label": "Street"
     },
@@ -24,25 +20,29 @@
       "type": "string",
       "label": "Region"
     },
-    "postal-code": {
-      "type": "string",
-      "label": "Postal code"
-    },
     "country": {
+      "type": "string",
+      "enum": [
+        "India",
+        "Australia",
+        "Britain"
+      ]
+    },
+    "city": {
       "type": "string"
     }
   },
   "required": [
     "locality",
     "region",
-    "country-name"
+    "country"
   ],
   "dependentRequired": {
-    "post-office-box": [
-      "street-address"
+    "postalCode": [
+      "city"
     ],
-    "extended-address": [
-      "street-address"
+    "streetAddress": [
+      "city"
     ]
   }
 }
